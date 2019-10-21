@@ -7,4 +7,5 @@ import ebook.entity.theloai;
 public interface theloaiDAOimp {
 	public List<theloai> returnTheLoai();
 	public int amountOfTruyen(int idTheLoai);
+	public theloai returnChiTietTheLoai(int idTheLoai);
 }

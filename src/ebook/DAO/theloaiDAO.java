@@ -31,7 +31,6 @@ public class theloaiDAO implements theloaiDAOimp {
 		
 		String hql = "FROM truyen WHERE idTheLoai = " + idTheLoai;
 		Query query = session.createQuery(hql);
-		
 		int sl = query.list().size();
 		sl = sl-1;
 		if(sl <= 12) {
@@ -44,5 +43,15 @@ public class theloaiDAO implements theloaiDAOimp {
 			sl= sl/12 +1 ;
 		}
 		return sl;
+	}
+	@Override
+	public theloai returnChiTietTheLoai(int idTheLoai) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM theloai e WHERE e.idTheLoai = " + idTheLoai;
+		Query query = session.createQuery(hql);
+		
+		theloai x = (theloai) query.uniqueResult();
+		
+		return x;
 	}
 }

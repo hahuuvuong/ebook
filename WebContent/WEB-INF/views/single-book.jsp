@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 
 	<!-- Cusom css -->
 	<link rel="stylesheet" href="css/custom.css">
@@ -56,7 +57,7 @@
 							<ul class="meninmenu d-flex justify-content-start">
 								<li class="drop with--one--item"><a href="home.htm">Trang chủ</a></li>
 								
-								<li class="drop"><a href="#"><p style="color:white!important">Thể loại</p></a>
+								<li class="drop"><a ><p style="color:white!important">Thể loại</p></a>
 								
 									<div class="megamenu mega04">
 									<c:set var="count" value="1" />
@@ -83,7 +84,37 @@
 								<!-- Start Shopping Cart -->
 								
 								<!-- End Shopping Cart -->
-							</li>
+						<li class="setting__bar__icon"><a class="setting__active"
+								href="#"></a>
+								<div class="searchbar__content setting__block">
+									<div class="content-inner">
+										<div class="switcher-currency">
+											<c:choose>
+												<c:when test="${sessionScope.nickname != NULL}">
+													<strong class="label switcher-label" style="text-align:center!important"> <span>${sessionScope.username}</span>
+													</strong>
+													<div class="switcher-options">
+												
+                                <a href="account/logout.htm" class="dropdown-item"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="account/logout.htm"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                		</div>
+                            
+													
+												</c:when>
+												<c:otherwise>
+        					<strong class="label switcher-label"><a href="account.htm"> <span>Login</span></a>
+													</strong>
+													<div class="switcher-options">
+														<strong class="label switcher-label"><a href="account/register.htm"> <span>Create account</span></a>
+													</strong>
+													</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+
+
+									</div>
+								</div></li>
 							
 						</ul>
 					</div>
@@ -125,7 +156,7 @@
 								<div class="col-lg-6 col-12">
 									<div class="wn__fotorama__wrapper">
 										<!-- <div class="fotorama wn__fotorama__action" > -->
-										<a hrefc="${truyen.image}" target="_blank">	<img src="${truyen.image}" style="height:565px!important; width:450px!important;"></a>
+										<a href="${truyen.image}" target="_blank">	<img src="${truyen.image}" style="height:565px!important; width:450px!important;"></a>
 
 										<!-- </div> -->
 									</div>

@@ -1,5 +1,9 @@
 package ebook.controller;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,15 +23,14 @@ public class SearchController {
 	@Autowired
 	theloaiDAO theloaidao;
 	@RequestMapping(value ="/search", method = RequestMethod.POST)
-	public String searchFunction(ModelMap model, @RequestParam("searchText") String searchText) {
+	public String searchFunction(ModelMap model, HttpServletRequest request) throws UnsupportedEncodingException {
+		String searchText = new String(request.getParameter("searchText").getBytes("ISO-8859-1"), "UTF-8");
+		System.out.println(searchText);
 		
 		model.addAttribute("categories", theloaidao.returnTheLoai());
 		model.addAttribute("truyens",truyendao.searchingTruyen(searchText));
-		model.addAttribute("num", 6);
-		model.addAttribute("numPage",1);
-		model.addAttribute("idTheLoai",2);
 		
 		
-		return "category";
+		return "search";
 	}
 }

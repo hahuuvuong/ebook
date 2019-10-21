@@ -63,8 +63,49 @@ public class truyenDAO implements truyenDAOimp {
 	public List<truyen> searchingTruyen(String keywords){
 		Session session = factory.getCurrentSession();
 		String hql = "SELECT e FROM truyen e WHERE e.TenTruyen LIKE '%"+keywords+"%'";
+		System.out.println(hql);
 		Query query = session.createQuery(hql);
 		query.setMaxResults( 12);
+		List<truyen> list = query.list();
+		return list;
+	}
+	@Override
+	public int amountOfTruyens() {
+		Session session = factory.getCurrentSession();
+		
+		String hql = "FROM truyen ";
+		Query query = session.createQuery(hql);
+		
+		int sl = query.list().size();
+		sl = sl-1;
+		if(sl <= 12) {
+			sl = 1;
+		}
+		else if ((sl%12)==0) {
+			sl = sl/12 ;
+		}
+		else {
+			sl= sl/12 +1 ;
+		}
+		return sl;
+	}
+	@Override
+	public List<truyen> allTruyen(int numPage){
+		Session session = factory.getCurrentSession();
+		
+		String hql = "FROM truyen ";
+		Query query = session.createQuery(hql);
+		query.setFirstResult((numPage-1)*12 + 1);
+		query.setMaxResults( 12);
+		List<truyen> list = query.list();
+		return list;
+	}
+	@Override
+	public List<truyen> returnAllTruyen(){
+		Session session = factory.getCurrentSession();
+		
+		String hql = "FROM truyen ";
+		Query query = session.createQuery(hql);
 		List<truyen> list = query.list();
 		return list;
 	}

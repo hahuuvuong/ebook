@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/single-book.jsp=UTF-8
+encoding//src/ebook/DAO/truyenDAO.java=UTF-8
+encoding//src/ebook/controller/TruyenController.java=UTF-8
