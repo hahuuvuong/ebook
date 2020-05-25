@@ -3,12 +3,15 @@ package ebook.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ebook.DAO.AccountDAO;
 import ebook.DAO.theloaiDAO;
 import ebook.DAO.truyenDAO;
 import ebook.entity.truyen;
@@ -20,8 +23,10 @@ public class HomeController {
 	truyenDAO truyendao;
 	@Autowired
 	theloaiDAO theloaidao;
+	@Autowired
+	AccountDAO accountdao;
 	@RequestMapping("/home")
-	public String index(ModelMap model) 
+	public String index(ModelMap model,HttpSession session) 
 	{	
 		List<truyen> list = new ArrayList<truyen>();
 		list.add(truyendao.returnTruyen(94));
@@ -44,8 +49,14 @@ public class HomeController {
 		
 		
 		model.addAttribute("categories", theloaidao.returnTheLoai() );
-		
-	
+		try {
+			String check = (String) session.getAttribute("username");
+			check.isEmpty();
+			model.addAttribute("listFavBook",accountdao.returnFavBook(check));
+		}
+		catch(Exception e) {
+			
+		}
 	return "index";
 	}
 

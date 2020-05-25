@@ -24,13 +24,11 @@ public class DashboardController {
 			String check = (String) session.getAttribute("username");
 			check.isEmpty();
 			Accounts x = accountdao.returnRole(check);
-
 			if(x.isRole() != true)
 				url = "403page" ;
 		}
 		catch(Exception e) {
 			url = "403page";
-			System.out.println(e.getMessage());
 		}
 		return url;
 	}

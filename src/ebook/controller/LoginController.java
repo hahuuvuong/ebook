@@ -34,6 +34,7 @@ public class LoginController {
 		if(accountdao.checkUsername(username,password)) {
 			session.setAttribute("nickname", accountdao.returnNickname(username));
 			session.setAttribute("username", username);
+			session.setAttribute("role",accountdao.returnRole(username).isRole());
 			return "redirect:/home.htm";
 		} else {
 			modelMap.put("error", "Incorrect Username or Password");
@@ -77,7 +78,51 @@ public class LoginController {
 			}
 		return "redirect:/home.htm";
 	}
-
+	
+	@RequestMapping(value = "changepass", method = RequestMethod.GET)
+	public String changepass(ModelMap model) {
+		
+		return "changepass";
+	}
+	@RequestMapping(value = "changepass", method = RequestMethod.POST)
+	public String changepass(ModelMap model,HttpServletRequest request,HttpSession sessions)
+	{
+		String pass = request.getParameter("pass");
+		String repass = request.getParameter("repass");
+		String newpass = request.getParameter("newpass");
+		
+		String nickname = (String) sessions.getAttribute("username");
+		Accounts acc = accountdao.returnAccount(nickname);
+		if(acc.getPassword().equals(pass))
+		{
+		if(repass.equals(newpass)) {
+			acc.setPassword(newpass);
+			Session session = factory.openSession();
+			Transaction t = session.beginTransaction();
+			try {
+				session.update(acc);
+				t.commit();
+			}
+			catch(Exception e) {
+				model.put("error", e.getMessage());
+				t.rollback();
+			}
+			finally {
+			session.close();
+			}
+		}
+			else {
+				model.put("error","Repass incorrect");
+				return "changepass";
+			}
+		}
+		else
+		{
+			model.put("error","Password incorrect");
+			return "changepass";
+		}
+		return "redirect:/home.htm";
+	}
 	@RequestMapping(value ="403")
 	public String pageAccessDenied() {
 		return "403page";

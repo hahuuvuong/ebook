@@ -190,23 +190,45 @@ th {
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered first">
-
-										<thead>
-											<tr>
-												<th style="width: 50% !important">ID thể loại</th>
-												<th style="width: 50% !important">Tên thể loại</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="u" items="${categories}">
-												<tr>
-													<td style="width: 50% !important">${u.idTheLoai}</td>
-													<td style="width: 50% !important">${u.tenTheLoai}</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-
-
+										<c:choose>
+												<c:when test="${users != null}">
+                                 <thead>
+													<tr>
+														<th style="width: 25% !important">Username</th>
+														<th style="width: 25% !important">Email</th>
+														<th style="width: 25% !important">Tên người dùng</th>
+														<th style="width: 25% !important">Role</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="u" items="${users}">
+														<tr>
+															<th style="width: 25% !important">${u.username}</th>
+															<th style="width: 25% !important">${u.email}</th>
+															<th style="width: 25% !important">${u.nickname}</th>
+															<th style="width: 25% !important">${u.role}</th>
+														</tr>
+													</c:forEach>
+												</tbody>
+											
+                                </c:when>
+                                		<c:otherwise>
+												<thead>
+													<tr>
+														<th style="width: 50% !important">ID thể loại</th>
+														<th style="width: 50% !important">Tên thể loại</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="u" items="${categories}">
+														<tr>
+															<td style="width: 50% !important">${u.idTheLoai}</td>
+															<td style="width: 50% !important">${u.tenTheLoai}</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</c:otherwise>
+	</c:choose>
 									</table>
 
 

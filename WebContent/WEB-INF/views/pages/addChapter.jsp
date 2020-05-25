@@ -157,6 +157,7 @@
 							<h5 class="card-header">Nhập chapter</h5>
 							<div class="card-body">
 								<form:form action = "addchapter.htm" modelAttribute = "chapter" method="POST" class="needs-validation" >
+								<form:errors path="*" element="ul"/>
 									<div class="row">
 								  <c:if test = "${chapter.idChapter !=0}">
 										<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">

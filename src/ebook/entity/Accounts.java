@@ -1,8 +1,16 @@
 package ebook.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "Accounts")
@@ -13,6 +21,13 @@ public class Accounts {
 	private String password;
 	private String nickname;
 	private boolean role;
+	@ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
+	@JoinTable(
+			name = "favBook",
+			joinColumns = { @JoinColumn(referencedColumnName = "Username")},
+			inverseJoinColumns = {@JoinColumn (referencedColumnName = "idTruyen")}
+			)
+	Set<truyen> truyens = new HashSet<>(0);
 	public Accounts() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -55,7 +70,11 @@ public class Accounts {
 	public void setRole(boolean role) {
 		this.role = role;
 	}
-	
-	
+	public Set<truyen> getTruyens() {
+		return truyens;
+	}
+	public void setTruyens(Set<truyen> truyens) {
+		this.truyens = truyens;
+	}
 	
 }

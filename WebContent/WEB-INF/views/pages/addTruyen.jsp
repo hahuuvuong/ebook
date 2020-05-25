@@ -158,6 +158,7 @@
 							<h5 class="card-header">Nhập truyện</h5>
 							<div class="card-body">
 								<form:form action = "addtruyen.htm" modelAttribute = "truyen" method="POST" class="needs-validation" >
+								<form:errors path="*" element="ul"/>
 									<div class="row">
 										  <c:if test = "${truyen.idTruyen !=0}">
 										  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">

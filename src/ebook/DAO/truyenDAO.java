@@ -18,11 +18,12 @@ public class truyenDAO implements truyenDAOimp {
 	
 	@Override
 	public truyen returnTruyen(int id) {
-		Session session = factory.getCurrentSession();
+		Session session = factory.openSession();
 		
 		String hql1 = "SELECT e FROM truyen e WHERE e.idTruyen = "+id;
 		Query query1 = session.createQuery(hql1);
 		truyen x = (truyen) query1.uniqueResult();
+		session.close();
 		return x;
 	}
 	@Override

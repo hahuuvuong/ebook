@@ -45,7 +45,8 @@ margin-bottom: 20px;
 						Member Login
 					</span>
 					<h3>${error}</h3>
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<h3>${message}</h3>
+					<div class="wrap-input100 validate-input" data-validate = "Tên đăng nhập không được bỏ trống!">
 						<input class="input100" type="text" name="username" placeholder="Tên đăng nhập">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -53,7 +54,7 @@ margin-bottom: 20px;
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+					<div class="wrap-input100 validate-input" data-validate = "Password không được bỏ trống!">
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">

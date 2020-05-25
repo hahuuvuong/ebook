@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/plugins.css">
 <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
 <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <!-- Cusom css -->
 <link rel="stylesheet" href="css/custom.css">
@@ -100,7 +101,50 @@
 						<ul
 							class="header__sidebar__right d-flex justify-content-end align-items-center">
 							<li class="shop_search"><a class="search__active" href="#"></a></li>
-							<li class="wishlist"><a href="#"></a></li>
+							<li class="wishlist"><a class="cartbox_active" href="#"></a>
+								<!-- Start Shopping Cart -->
+								<div class="block-minicart minicart__active">
+									<div class="minicart-content-wrapper">
+										<div class="micart__close">
+											<span>close</span>
+										</div>
+										
+										<div class="single__items">
+											<div class="miniproduct">
+											
+											<c:choose>
+												<c:when test="${sessionScope.nickname != NULL}">
+											<c:forEach var="u" items="${listFavBook}"  end = "2">
+											
+												<div class="item01 d-flex">
+													<div class="thumb">
+														<a href="product-details.html"><img src="${u.image}" alt="product images"></a>
+													</div>
+													<div class="content">
+														<h6><a href="product-details.html">${u.tenTruyen}</a></h6>
+														<span class="prize">${u.tacGia}</span>
+														<div class="product_prize d-flex justify-content-between">
+															<span class="qun"></span>
+															<ul class="d-flex justify-content-end">
+																<li><a href="favbook/delete/${u.idTruyen}.htm"><i class="zmdi zmdi-delete"></i></a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+												</c:otherwise>
+											</c:choose>
+											</div>
+										</div>
+										<div class="mini_action cart">
+											<a class="cart__btn" href="favbook.htm">Xem truyện yêu thích của bạn</a>
+										</div>
+									</div>
+								</div>
+								<!-- End Shopping Cart -->
+							</li>
 							<!-- Start Shopping Cart -->
 
 							<!-- End Shopping Cart -->
@@ -114,8 +158,12 @@
 													<strong class="label switcher-label" style="text-align:center!important"> <span>${sessionScope.nickname}</span>
 													</strong>
 													<div class="switcher-options">
-												
-                                <a href="account/logout.htm" class="dropdown-item"><i class="fas fa-user mr-2"></i>Account</a>
+												<c:choose>
+												<c:when test="${sessionScope.role == true}">
+                                <a href="dashboard.htm" class="dropdown-item"><i class="fas fa-user mr-2"></i>Dashboard</a>
+                                </c:when>
+                                			</c:choose>
+                                			<a class="dropdown-item" href="account/changepass.htm"><i class="fas fa-exchange-alt mr-2"></i>Change password</a>
                                 <a class="dropdown-item" href="account/logout.htm"><i class="fas fa-power-off mr-2"></i>Logout</a>
                                 		</div>
                             
@@ -263,6 +311,9 @@
 												class="quickview modal-view detail-link"
 												href="#productmodal${x.idTruyen}"><i
 													class="zmdi zmdi-search"></i></a></li>
+												<li><a  title="Xem sau"
+												class="quickview modal-view detail-link"
+												href="favbook/${x.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
 										</ul>
 									</div>
 								</div>
@@ -357,6 +408,9 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
+																<li><a  title="Xem sau"
+												class="quickview modal-view detail-link"
+												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -421,6 +475,9 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
+																<li><a  title="Xem sau"
+												class="quickview modal-view detail-link"
+												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -485,6 +542,9 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
+																<li><a  title="Xem sau"
+												class="quickview modal-view detail-link"
+												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -549,6 +609,9 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
+																<li><a  title="Xem sau"
+												class="quickview modal-view detail-link"
+												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -613,6 +676,9 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
+																<li><a  title="Xem sau"
+												class="quickview modal-view detail-link"
+												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -675,6 +741,9 @@
 										class="quickview modal-view detail-link"
 										href="#productmodal${t.idTruyen}"><i
 											class="zmdi zmdi-search"></i></a></li>
+											<li><a  title="Xem sau"
+												class="quickview modal-view detail-link"
+												href="favbook/${t.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
 								</ul>
 							</div>
 						</div>
@@ -702,11 +771,11 @@
 							<div class="footer__content">
 								<ul
 									class="social__net social__net--2 d-flex justify-content-center">
-									<li><a href="#"><i class="bi bi-facebook"></i></a></li>
-									<li><a href="#"><i class="bi bi-google"></i></a></li>
-									<li><a href="#"><i class="bi bi-twitter"></i></a></li>
-									<li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-									<li><a href="#"><i class="bi bi-youtube"></i></a></li>
+									<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fab fa-google" ></i></a></li>
+									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fab fa-youtube"></i></a></li>
 								</ul>
 								<ul class="mainmenu d-flex justify-content-center">
 									<li><a href="index.html">Trending</a></li>
@@ -722,28 +791,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="copyright__wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<div class="copyright">
-							<div class="copy__right__inner text-left">
-								<p>
-									Copyright <i class="fa fa-copyright"></i> <a
-										href="https://freethemescloud.com/">Free themes Cloud.</a> All
-									Rights Reserved
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<div class="payment text-right">
-							<img src="images/icons/payment.png" alt="" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</footer>
 	<!-- //Footer Area -->
 	<!-- QUICKVIEW PRODUCT -->

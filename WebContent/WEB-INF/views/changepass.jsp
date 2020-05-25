@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Register</title>
+	<title>Change password</title>
 	<base href="${pageContext.servletContext.contextPath}/">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,27 +42,20 @@ margin-bottom: 20px;
 				</div>
 
 					
-	<form:form modelAttribute="account" action="account/register.htm" class="login100-form validate-form"   method="POST">
+	<form:form modelAttribute="account" action="account/changepass.htm" class="login100-form validate-form"   method="POST">
 					<span class="login100-form-title">
-						Member Register
+						Changing password
 					</span>
 					<h3>${error}</h3>
-					<div class="wrap-input100 validate-input" data-validate = "Username is required">
-						<form:input path="username" id="usernamee" class="input100" type="text" placeholder="Tên đăng nhập"/>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Tên người dùng is required">
-						<form:input path = "nickname" class="input100" type="text" placeholder="Tên người dùng"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-address-card-o" aria-hidden="true"></i>
+							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<form:input path = "password" class="input100" type="password" name="pass" placeholder="Password"/>
+						<input class="input100" type="password" name="newpass" placeholder="New password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -76,16 +69,10 @@ margin-bottom: 20px;
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<form:input path = "email" class="input100" type="text" name="email" placeholder="Email"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Register
+							Submit
 						</button>
 					</div>
 
@@ -122,27 +109,7 @@ margin-bottom: 20px;
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<script>
-$(function(){
-    $("#usernamee").blur(function(){
-        var uname = $('#usernamee').val();
 
-             $.ajax({
-                type: "GET",
-                data:{
-                	username:uname
-                },
-                url: "/ebook/API/KiemTraDangNhap.htm",
-                success: function(value){
-					if(value!=""){
-						alert("Tên đăng nhập đã có người sử dụng, vui lòng chọn tên khác!");
-						 $('#usernamee').parent().addClass('alert-validate');
-					}
-                }
-                });
-    
-
-    });
- });
 </script>
 
 </body>

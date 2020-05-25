@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="ebook.entity.truyen"%>
 <%@ page import="java.util.List"%>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>${truyen.tenTruyen}</title>
+<title>Your favorite book</title>
 <base href="${pageContext.servletContext.contextPath}/">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,8 +33,9 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/plugins.css">
 <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
 <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-
+<link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome.css">
 <!-- Cusom css -->
 <link rel="stylesheet" href="css/custom.css">
 
@@ -46,8 +47,8 @@
 	height: auto;
 	max-height: 300px;
 	overflow-x: hidden;
-	 font-size: 14px;
-	 width: 350px;
+	font-size: 14px;
+	width: 350px;
 }
 </style>
 <body>
@@ -56,9 +57,9 @@
 	<![endif]-->
 	<c:set var="btnPrevious" value="1" />
 	<c:forEach var="item" items="${chapter}" varStatus="loop">
-  			<c:if test="${item.idChapter==content.idChapter}">
-    		<c:set var="btnPrevious" value="${loop.index}" />
- 			 </c:if>
+		<c:if test="${item.idChapter==content.idChapter}">
+			<c:set var="btnPrevious" value="${loop.index}" />
+		</c:if>
 	</c:forEach>
 
 	<!-- Main wrapper -->
@@ -83,7 +84,8 @@
 								<li class="drop with--one--item"><a href="home.htm">Trang
 										chủ</a></li>
 
-								<li class="drop"><a ><p style="color: white !important">Thể loại</p></a>
+								<li class="drop"><a><p style="color: white !important">Thể
+											loại</p></a>
 
 									<div class="megamenu mega04">
 										<c:set var="count" value="1" />
@@ -107,6 +109,9 @@
 						</nav>
 					</div>
 					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
+
+
+					
 						<ul
 							class="header__sidebar__right d-flex justify-content-end align-items-center">
 							<li class="shop_search"><a class="search__active" href="#"></a></li>
@@ -121,22 +126,26 @@
 										<div class="switcher-currency">
 											<c:choose>
 												<c:when test="${sessionScope.nickname != NULL}">
-													<strong class="label switcher-label" style="text-align:center!important"> <span>${sessionScope.nickname}</span>
+													<strong class="label switcher-label"
+														style="text-align: center !important"> <span>${sessionScope.username}</span>
 													</strong>
 													<div class="switcher-options">
-												
-                                <a href="account/logout.htm" class="dropdown-item"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="account/logout.htm"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                                		</div>
-                            
-													
+
+														<a href="account/logout.htm" class="dropdown-item"><i
+															class="fas fa-user mr-2"></i>Account</a> <a
+															class="dropdown-item" href="account/logout.htm"><i
+															class="fas fa-power-off mr-2"></i>Logout</a>
+													</div>
+
+
 												</c:when>
 												<c:otherwise>
-        					<strong class="label switcher-label"><a href="account.htm"> <span>Login</span></a>
-													</strong>
+													<strong class="label switcher-label"><a
+														href="account.htm"> <span>Login</span></a> </strong>
 													<div class="switcher-options">
-														<strong class="label switcher-label"><a href="account/register.htm"> <span>Create account</span></a>
-													</strong>
+														<strong class="label switcher-label"><a
+															href="account/register.htm"> <span>Create
+																	account</span></a> </strong>
 													</div>
 												</c:otherwise>
 											</c:choose>
@@ -191,112 +200,49 @@
 
 		<!-- End Bradcaump area -->
 		<!-- Start About Area -->
-		<div class="page-about about_area bg--white section-padding--lg">
-			<div class="container"
-				style="background-color: rgb(238, 238, 238) !important; border-radius: 30px; padding: 10px;">
-
-				<h3 class="text-center" style="margin: 30px 30px 30px 30px;">
-					<a href="truyen/${truyen.idTruyen}.htm">${truyen.tenTruyen}</a>
-				</h3>
-				<div class="text-center" style="margin: 30px 30px 30px 30px;">${content.tenChapter}</div>
-				<div class="text-center">
-				
-	<!--  -->			<c:set var="btnTemp" value="0" />
-				
-				<c:forEach var="u" items="${chapter}" begin = "0" end = "${btnPrevious}" varStatus="count">
-				<c:if test="${btnTemp==btnPrevious - 1}">
-					<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><button type="button" class="btn btn-default" style="margin-right: 5px !important"><i class="zmdi zmdi-arrow-left"></i></button></a>
-					</c:if>
-					<c:set var="btnTemp" value="${count.count}" />
-					</c:forEach>
-					
-					
-					<div class="btn-group text-center">
-						<button type="button" class="btn btn-sm btn-info dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Chọn Tập <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu scrollable-menu">
-							<c:forEach var="u" items="${chapter}">
-								<c:choose>
-									<c:when test="${u.idChapter==content.idChapter}">
-        							<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><li class="list-group-item active">${u.tenChapter}</li></a>
-									</c:when>
-									<c:otherwise>
-      								<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><li class="list-group-item">${u.tenChapter}</li></a>
-									</c:otherwise>
-								</c:choose>
-								
-							</c:forEach>
-						</ul>
+		<div class="cart-main-area section-padding--lg bg--white">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 ol-lg-12">
+						<form action="#">
+							<div class="table-content wnro__table table-responsive">
+								<table>
+									<thead>
+										<tr class="title-top">
+											<th class="product-thumbnail"></th>
+											<th class="product-name">Tên truyện</th>
+											<th class="product-price">Tác giả</th>
+											<th class="product-subtotal">Thể loại</th>
+											<th class="product-remove"></th>
+										</tr>
+									</thead>
+									<tbody>
+									<c:forEach var="u" items="${listFavBook}">
+										<tr>
+											<td class="product-thumbnail"><a href="#"><img
+													src="${u.image}" alt="product img"></a></td>
+											<td class="product-name"><a href="truyen/${u.idTruyen}.htm">${u.tenTruyen}</a></td>
+											<td class="product-price"><span class="amount">${u.tacGia}</span></td>
+											<td class="product-subtotal"><a href ="theloai/${u.idTheLoai.idTheLoai}/1.htm">${u.idTheLoai.tenTheLoai}</a></td>
+											<td class="product-remove"><a href="favbook/delete/${u.idTruyen}.htm"><i class="zmdi zmdi-delete"></i></a></td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</form>
+						<div class="cartbox__btn">
+							<ul
+								class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
+							</ul>
+						</div>
 					</div>
-					
-					
-				<c:set var="btnTemp" value="0" />
-				
-				<c:forEach var="u" items="${chapter}" begin = "0" end = "${btnPrevious+1}" varStatus="count">
-				<c:if test="${btnTemp==btnPrevious + 1}">
-					<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><button type="button" class="btn btn-default" style="margin-left: 5px !important"><i class="zmdi zmdi-arrow-right"></i></button></a>
-					</c:if>
-					<c:set var="btnTemp" value="${count.count}" />
-					</c:forEach>
-				
-				
-				</div>
-				<hr style="border-top: 1px solid black; margin: 30px 30px 30px 30px;">
-
-				<div style="color: black; font-size: 18px; padding:20px;">${content.noiDung}</div>
-				<hr style="border-top: 1px solid black; margin: 30px 30px 30px 30px;">
-				
-				<div class="text-center"  style=" margin: 30px 30px 30px 30px;!important" >
-				
-	<!--  -->			<c:set var="btnTemp" value="0" />
-				
-				<c:forEach var="u" items="${chapter}" begin = "0" end = "${btnPrevious}" varStatus="count">
-				<c:if test="${btnTemp==btnPrevious - 1}">
-					<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><button type="button" class="btn btn-default" style="margin-right: 5px !important"><i class="zmdi zmdi-arrow-left"></i></button></a>
-					</c:if>
-					<c:set var="btnTemp" value="${count.count}" />
-					</c:forEach>
-					
-					
-					<div class="btn-group text-center">
-						<button type="button" class="btn btn-sm btn-info dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Chọn Tập <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu scrollable-menu">
-							<c:forEach var="u" items="${chapter}">
-								<c:choose>
-									<c:when test="${u.idChapter==content.idChapter}">
-        							<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><li class="list-group-item active">${u.tenChapter}</li></a>
-									</c:when>
-									<c:otherwise>
-      								<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><li class="list-group-item">${u.tenChapter}</li></a>
-									</c:otherwise>
-								</c:choose>
-								
-							</c:forEach>
-						</ul>
-					</div>
-					
-					
-				<c:set var="btnTemp" value="0" />
-				
-				<c:forEach var="u" items="${chapter}" begin = "0" end = "${btnPrevious+1}" varStatus="count">
-				<c:if test="${btnTemp==btnPrevious + 1}">
-					<a href="chapter/${truyen.idTruyen}/${u.idChapter}.htm"><button type="button" class="btn btn-default" style="margin-left: 5px !important"><i class="zmdi zmdi-arrow-right"></i></button></a>
-					</c:if>
-					<c:set var="btnTemp" value="${count.count}" />
-					</c:forEach>
-				
-				
 				</div>
 			</div>
 		</div>
 		<!-- End About Area -->
 		<!-- Start Team Area -->
-		
+
 		<!-- End Team Area -->
 		<!-- Footer Area -->
 		<footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
@@ -306,8 +252,7 @@
 						<div class="col-lg-12">
 							<div class="footer__widget footer__menu">
 								<div class="ft__logo">
-									<a href="home.htm"> <img src="images/logo/3.png"
-										alt="logo">
+									<a href="home.htm"> <img src="images/logo/3.png" alt="logo">
 									</a>
 									<p>There are many variations of passages of Lorem Ipsum
 										available, but the majority have suffered duskam alteration
@@ -322,42 +267,21 @@
 									<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
 									<li><a href="#"><i class="fab fa-youtube"></i></a></li>
 								</ul>
-									<ul class="mainmenu d-flex justify-content-center">
-										<li><a href="index.html">Trending</a></li>
-										<li><a href="index.html">Best Seller</a></li>
-										<li><a href="index.html">All Product</a></li>
-										<li><a href="index.html">Wishlist</a></li>
-										<li><a href="index.html">Blog</a></li>
-										<li><a href="index.html">Contact</a></li>
-									</ul>
+								<ul class="mainmenu d-flex justify-content-center">
+									<li><a href="index.html">Trending</a></li>
+									<li><a href="index.html">Best Seller</a></li>
+									<li><a href="index.html">All Product</a></li>
+									<li><a href="index.html">Wishlist</a></li>
+									<li><a href="index.html">Blog</a></li>
+									<li><a href="index.html">Contact</a></li>
+								</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="copyright__wrapper">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-12">
-							<div class="copyright">
-								<div class="copy__right__inner text-left">
-									<p>
-										Copyright <i class="fa fa-copyright"></i> <a
-											href="https://freethemescloud.com/">Free themes Cloud.</a>
-										All Rights Reserved
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-12">
-							<div class="payment text-right">
-								<img src="images/icons/payment.png" alt="" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</footer>
 		<!-- //Footer Area -->
 
