@@ -15,9 +15,10 @@ import javax.persistence.Table;
 public class theloai {
 	@Id
 	private int idTheLoai;
+	
 	private String tenTheLoai;
-	@OneToMany(mappedBy = "idTruyen",fetch = FetchType.LAZY)
-	private Collection<truyen> truyens;
+
+	
 	public int getIdTheLoai() {
 		return idTheLoai;
 	}
@@ -30,21 +31,15 @@ public class theloai {
 	public void setTenTheLoai(String tenTheLoai) {
 		this.tenTheLoai = tenTheLoai;
 	}
-	public Collection<truyen> getTruyens() {
-		return truyens;
-	}
-	public void setTruyens(Collection<truyen> truyens) {
-		this.truyens = truyens;
-	}
+
 	public theloai() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public theloai(int idTheLoai, String tenTheLoai, Collection<truyen> truyens) {
+	public theloai(int idTheLoai, String tenTheLoai) {
 		super();
 		this.idTheLoai = idTheLoai;
 		this.tenTheLoai = tenTheLoai;
-		this.truyens = truyens;
 	}
 	
 }

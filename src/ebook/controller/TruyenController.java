@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ebook.DAO.chapterDAO;
 import ebook.DAO.theloaiDAO;
 import ebook.DAO.truyenDAO;
+import ebook.DAO.AssessmentDAO;
+import ebook.entity.RateAssessment;
 import ebook.entity.chapter;
 import ebook.entity.theloai;
 import ebook.entity.truyen;
@@ -29,19 +31,24 @@ public class TruyenController {
 	@Autowired
 	truyenDAO truyendao;
 	@Autowired
+	AssessmentDAO assessmentdao;
+	@Autowired
 	SessionFactory factory;
 	@RequestMapping(value = "truyen/{id}", method = RequestMethod.GET)
 	public String detail(@PathVariable("id") int id,ModelMap model) {
 		Session session = factory.openSession();
 		
-		
+		List<RateAssessment> listAssess = assessmentdao.getListAssessmentOfTruyen(id);
 		List<chapter> list = chapterdao.returnChapterTruyen(id);
-		
 		truyen idTruyen = (truyen)session.get(truyen.class, id);
 		
 		theloai idTheLoai = idTruyen.getIdTheLoai();
 		
+		model.addAttribute("rateForm", new RateAssessment());
 		model.addAttribute("chapter",list);
+		model.addAttribute("listSize",list.size());
+		model.addAttribute("listAssess",listAssess);
+		model.addAttribute("listAssessSize",listAssess.size());
 		model.addAttribute("categories", theloaidao.returnTheLoai());
 		model.addAttribute("truyen",truyendao.returnTruyen(id));
 		model.addAttribute("relatedBook", truyendao.truyenTheoTheLoai( idTheLoai.getIdTheLoai()));

@@ -87,10 +87,16 @@ public class AccountDAO implements AccountDAOimp {
 	public void deleteFavBook(String username, int id) {
 		
 		Session session = factory.openSession();
-		String hql = "DELETE FROM favBook WHERE accounts_Username = '" + username + "'" +" AND truyens_idTruyen ="+id+"";
-		session.createSQLQuery(hql).executeUpdate();
-		session.close();
-		
+		try {
+			String hql = "DELETE FROM favBook WHERE accounts_Username = '" + username + "'" +" AND truyens_idTruyen ="+id+"";
+			session.createSQLQuery(hql).executeUpdate();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			session.close();
+		}
 	}
 	public List<Accounts> returnListUser(){
 		Session session = factory.openSession();

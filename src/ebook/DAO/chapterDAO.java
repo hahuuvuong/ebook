@@ -23,7 +23,6 @@ public class chapterDAO implements chapterDAOimp {
 		String hql = "SELECT e FROM chapter e WHERE e.idTruyen = "+idTruyen;
 		Query query = session.createQuery(hql);
 		List<chapter> list = query.list();
-
 		
 		return list;
 	}

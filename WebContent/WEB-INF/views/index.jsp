@@ -23,8 +23,10 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/plugins.css">
 <link rel="stylesheet" href="style.css">
- <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+<link rel="stylesheet"
+	href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+<link rel="stylesheet"
+	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <!-- Cusom css -->
 <link rel="stylesheet" href="css/custom.css">
 
@@ -74,7 +76,8 @@
 								<li class="drop with--one--item"><a href="home.htm">Trang
 										chủ</a></li>
 
-								<li class="drop"><a ><p style="color: white !important">Thể loại</p></a>
+								<li class="drop"><a><p style="color: white !important">Thể
+											loại</p></a>
 
 									<div class="megamenu mega04">
 										<c:set var="count" value="1" />
@@ -108,43 +111,47 @@
 										<div class="micart__close">
 											<span>close</span>
 										</div>
-										
+
 										<div class="single__items">
 											<div class="miniproduct">
-											
-											<c:choose>
-												<c:when test="${sessionScope.nickname != NULL}">
-											<c:forEach var="u" items="${listFavBook}"  end = "2">
-											
-												<div class="item01 d-flex">
-													<div class="thumb">
-														<a href="product-details.html"><img src="${u.image}" alt="product images"></a>
-													</div>
-													<div class="content">
-														<h6><a href="product-details.html">${u.tenTruyen}</a></h6>
-														<span class="prize">${u.tacGia}</span>
-														<div class="product_prize d-flex justify-content-between">
-															<span class="qun"></span>
-															<ul class="d-flex justify-content-end">
-																<li><a href="favbook/delete/${u.idTruyen}.htm"><i class="zmdi zmdi-delete"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-													</c:forEach>
-												</c:when>
-												<c:otherwise>
-												</c:otherwise>
-											</c:choose>
+
+												<c:choose>
+													<c:when test="${sessionScope.nickname != NULL}">
+														<c:forEach var="u" items="${listFavBook}" end="2">
+
+															<div class="item01 d-flex">
+																<div class="thumb">
+																	<a href="product-details.html"><img
+																		src="${u.image}" alt="product images"></a>
+																</div>
+																<div class="content">
+																	<h6>
+																		<a href="product-details.html">${u.tenTruyen}</a>
+																	</h6>
+																	<span class="prize">${u.tacGia}</span>
+																	<div
+																		class="product_prize d-flex justify-content-between">
+																		<span class="qun"></span>
+																		<ul class="d-flex justify-content-end">
+																			<li><a href="favbook/delete/${u.idTruyen}.htm"><i
+																					class="zmdi zmdi-delete"></i></a></li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</c:forEach>
+													</c:when>
+													<c:otherwise>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 										<div class="mini_action cart">
-											<a class="cart__btn" href="favbook.htm">Xem truyện yêu thích của bạn</a>
+											<a class="cart__btn" href="favbook.htm">Xem truyện yêu
+												thích của bạn</a>
 										</div>
 									</div>
-								</div>
-								<!-- End Shopping Cart -->
-							</li>
+								</div> <!-- End Shopping Cart --></li>
 							<!-- Start Shopping Cart -->
 
 							<!-- End Shopping Cart -->
@@ -155,26 +162,31 @@
 										<div class="switcher-currency">
 											<c:choose>
 												<c:when test="${sessionScope.nickname != NULL}">
-													<strong class="label switcher-label" style="text-align:center!important"> <span>${sessionScope.nickname}</span>
+													<strong class="label switcher-label"
+														style="text-align: center !important"> <span>${sessionScope.nickname}</span>
 													</strong>
 													<div class="switcher-options">
-												<c:choose>
-												<c:when test="${sessionScope.role == true}">
-                                <a href="dashboard.htm" class="dropdown-item"><i class="fas fa-user mr-2"></i>Dashboard</a>
-                                </c:when>
-                                			</c:choose>
-                                			<a class="dropdown-item" href="account/changepass.htm"><i class="fas fa-exchange-alt mr-2"></i>Change password</a>
-                                <a class="dropdown-item" href="account/logout.htm"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                                		</div>
-                            
-													
+														<c:choose>
+															<c:when test="${sessionScope.role == true}">
+																<a href="dashboard.htm" class="dropdown-item"><i
+																	class="fas fa-user mr-2"></i>Dashboard</a>
+															</c:when>
+														</c:choose>
+														<a class="dropdown-item" href="account/changepass.htm"><i
+															class="fas fa-exchange-alt mr-2"></i>Change password</a> <a
+															class="dropdown-item" href="account/logout.htm"><i
+															class="fas fa-power-off mr-2"></i>Logout</a>
+													</div>
+
+
 												</c:when>
 												<c:otherwise>
-        					<strong class="label switcher-label"><a href="account.htm"> <span>Login</span></a>
-													</strong>
+													<strong class="label switcher-label"><a
+														href="account.htm"> <span>Login</span></a> </strong>
 													<div class="switcher-options">
-														<strong class="label switcher-label"><a href="account/register.htm"> <span>Create account</span></a>
-													</strong>
+														<strong class="label switcher-label"><a
+															href="account/register.htm"> <span>Create
+																	account</span></a> </strong>
 													</div>
 												</c:otherwise>
 											</c:choose>
@@ -201,7 +213,7 @@
 			<form id="search_mini_form" class="minisearch" action="search.htm"
 				method="POST">
 				<div class="field__search">
-					<input type="text" placeholder="Search entire store here..."
+					<input type="text" placeholder="Tìm kiếm truyện ..."
 						name="searchText">
 
 					<div class="action">
@@ -232,9 +244,7 @@
 					<!-- Slide One - Set the background image for this slide in the line below -->
 					<div class="carousel-item active"
 						style="background-image: url('https://pathforyou.org/wp-content/uploads/2018/10/slider-book-cover-1024x527.jpg'); opacity: 0.7;">
-						<div class="carousel-caption d-none d-md-block">
-						
-						</div>
+						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<!-- Slide Two - Set the background image for this slide in the line below -->
 					<div class="carousel-item"
@@ -311,9 +321,10 @@
 												class="quickview modal-view detail-link"
 												href="#productmodal${x.idTruyen}"><i
 													class="zmdi zmdi-search"></i></a></li>
-												<li><a  title="Xem sau"
+											<li><a title="Xem sau"
 												class="quickview modal-view detail-link"
-												href="favbook/${x.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+												href="favbook/${x.idTruyen}.htm" target="_blank"> <i
+													class="fas fa-heart"></i></a></li>
 										</ul>
 									</div>
 								</div>
@@ -408,9 +419,10 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
-																<li><a  title="Xem sau"
-												class="quickview modal-view detail-link"
-												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+														<li><a title="Xem sau"
+															class="quickview modal-view detail-link"
+															href="favbook/${z.idTruyen}.htm" target="_blank"> <i
+																class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -475,9 +487,10 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
-																<li><a  title="Xem sau"
-												class="quickview modal-view detail-link"
-												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+														<li><a title="Xem sau"
+															class="quickview modal-view detail-link"
+															href="favbook/${z.idTruyen}.htm" target="_blank"> <i
+																class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -542,9 +555,10 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
-																<li><a  title="Xem sau"
-												class="quickview modal-view detail-link"
-												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+														<li><a title="Xem sau"
+															class="quickview modal-view detail-link"
+															href="favbook/${z.idTruyen}.htm" target="_blank"> <i
+																class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -609,9 +623,10 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
-																<li><a  title="Xem sau"
-												class="quickview modal-view detail-link"
-												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+														<li><a title="Xem sau"
+															class="quickview modal-view detail-link"
+															href="favbook/${z.idTruyen}.htm" target="_blank"> <i
+																class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -676,9 +691,10 @@
 															class="quickview modal-view detail-link"
 															href="#productmodal${z.idTruyen}"><i
 																class="zmdi zmdi-search"></i></a></li>
-																<li><a  title="Xem sau"
-												class="quickview modal-view detail-link"
-												href="favbook/${z.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+														<li><a title="Xem sau"
+															class="quickview modal-view detail-link"
+															href="favbook/${z.idTruyen}.htm" target="_blank"> <i
+																class="fas fa-heart"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -741,9 +757,10 @@
 										class="quickview modal-view detail-link"
 										href="#productmodal${t.idTruyen}"><i
 											class="zmdi zmdi-search"></i></a></li>
-											<li><a  title="Xem sau"
-												class="quickview modal-view detail-link"
-												href="favbook/${t.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+									<li><a title="Xem sau"
+										class="quickview modal-view detail-link"
+										href="favbook/${t.idTruyen}.htm" target="_blank"> <i
+											class="fas fa-heart"></i></a></li>
 								</ul>
 							</div>
 						</div>
@@ -764,26 +781,17 @@
 								<a href="index.html"> <img src="images/logo/3.png"
 									alt="logo">
 								</a>
-								<p>There are many variations of passages of Lorem Ipsum
-									available, but the majority have suffered duskam alteration
-									variations of passages</p>
+								<p>Liên hệ với chúng tôi</p>
 							</div>
 							<div class="footer__content">
 								<ul
 									class="social__net social__net--2 d-flex justify-content-center">
-									<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fab fa-google" ></i></a></li>
+									<li><a href="facebook.com/hahuuvuong"><i
+											class="fab fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fab fa-google"></i></a></li>
 									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 									<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
 									<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-								</ul>
-								<ul class="mainmenu d-flex justify-content-center">
-									<li><a href="index.html">Trending</a></li>
-									<li><a href="index.html">Best Seller</a></li>
-									<li><a href="index.html">All Product</a></li>
-									<li><a href="index.html">Wishlist</a></li>
-									<li><a href="index.html">Blog</a></li>
-									<li><a href="index.html">Contact</a></li>
 								</ul>
 							</div>
 						</div>
@@ -791,7 +799,23 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="copyright__wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<div class="copyright">
+							<div class="copy__right__inner text-left">
+								<p>
+									<i class="fa fa-copyright"></i> <a
+										href="http://localhost:9999/ebook/home.htm">Ebook.com</a> Tổ
+									chức phi lợi nhuận
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</footer>
 	<!-- //Footer Area -->
 	<!-- QUICKVIEW PRODUCT -->
@@ -824,24 +848,16 @@
 								<div class="product-info">
 									<h1>${z.tenTruyen}</h1>
 									<div class="rating__and__review">
-
 										<div class="review">
 											<a href="#">${z.tacGia}</a>
 										</div>
 									</div>
-
 									<div class="quick-desc">${z.tomTat}</div>
-
 									<div class="addtocart-btn">
 										<a href="truyen/${z.idTruyen}.htm">Đọc ngay</a>
 									</div>
-
 								</div>
-
-
 							</div>
-
-
 						</div>
 					</div>
 				</div>
@@ -990,8 +1006,6 @@
 
 
 							</div>
-
-
 						</div>
 					</div>
 				</div>
@@ -1035,13 +1049,8 @@
 									<div class="addtocart-btn">
 										<a href="truyen/${z.idTruyen}.htm">Đọc ngay</a>
 									</div>
-
 								</div>
-
-
 							</div>
-
-
 						</div>
 					</div>
 				</div>

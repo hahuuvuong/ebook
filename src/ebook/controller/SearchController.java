@@ -23,14 +23,14 @@ public class SearchController {
 	@Autowired
 	theloaiDAO theloaidao;
 	@RequestMapping(value ="/search", method = RequestMethod.POST)
-	public String searchFunction(ModelMap model, HttpServletRequest request) throws UnsupportedEncodingException {
-		String searchText = new String(request.getParameter("searchText").getBytes("ISO-8859-1"), "UTF-8");
+	public String searchFunction(ModelMap model, HttpServletRequest request,@RequestParam("searchText") String searchText) throws UnsupportedEncodingException {
+	//	String searchText = new String(request.getParameter("searchText").getBytes("ISO-8859-1"), "UTF-8");
 		System.out.println(searchText);
 		
 		model.addAttribute("categories", theloaidao.returnTheLoai());
 		model.addAttribute("truyens",truyendao.searchingTruyen(searchText));
 		
-		
+		model.addAttribute("search", searchText);
 		return "search";
 	}
 }

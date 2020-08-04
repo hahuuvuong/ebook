@@ -12,9 +12,15 @@
 <title>Các thể loại</title>
 <base href="${pageContext.servletContext.contextPath}/">
 <!-- Bootstrap CSS -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="assets/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/libs/css/style.css">
@@ -36,7 +42,7 @@ td {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	height:50px;
+	height: 50px;
 }
 
 td.nobreak {
@@ -69,22 +75,27 @@ th {
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto navbar-right-top">
-                       
-                   
-                     
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAUelg7yg0mepGMf-N93hh6E9XrLnKwsKa4YEQ6swhDknk4F9eQ" alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">${sessionScope.nickname}</h5>
-                                </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="account/logout.htm"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+					<ul class="navbar-nav ml-auto navbar-right-top">
+
+
+
+						<li class="nav-item dropdown nav-user"><a
+							class="nav-link nav-user-img" href="#"
+							id="navbarDropdownMenuLink2" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"><img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsAUelg7yg0mepGMf-N93hh6E9XrLnKwsKa4YEQ6swhDknk4F9eQ"
+								alt="" class="user-avatar-md rounded-circle"></a>
+							<div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+								aria-labelledby="navbarDropdownMenuLink2">
+								<div class="nav-user-info">
+									<h5 class="mb-0 text-white nav-user-name">${sessionScope.nickname}</h5>
+								</div>
+								<a class="dropdown-item" href="#"><i
+									class="fas fa-user mr-2"></i>Account</a> <a class="dropdown-item"
+									href="account/logout.htm"><i class="fas fa-power-off mr-2"></i>Logout</a>
+							</div></li>
+					</ul>
+				</div>
 			</nav>
 		</div>
 		<!-- ============================================================== -->
@@ -99,7 +110,7 @@ th {
 					<a class="d-xl-none d-lg-none" href="#">Dashboard</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarNav" aria-controls="navbarNav"
-						aria-expanded="false" aria-label="Toggle navigation">
+						aria-expanded="true" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
@@ -110,7 +121,7 @@ th {
 								data-target="#submenu-1" aria-controls="submenu-1"><i
 									class="fa fa-fw fa-user-circle"></i>Dashboard <span
 									class="badge badge-success">6</span></a>
-								<div id="submenu-1" class="collapse submenu" style="">
+								<div id="submenu-1" class="collapse submenu show">
 									<ul class="nav flex-column">
 										<li class="nav-item"><a class="nav-link" href="#"
 											data-toggle="collapse" aria-expanded="false"
@@ -120,7 +131,6 @@ th {
 												<ul class="nav flex-column">
 													<li class="nav-item"><a class="nav-link"
 														href="dashboard/theloai.htm">Các thể loại</a></li>
-												
 
 												</ul>
 											</div></li>
@@ -147,6 +157,20 @@ th {
 														href="insertchapter/1.htm">Chỉnh sửa chapter</a></li>
 												</ul>
 											</div></li>
+										<c:choose>
+											<c:when test="${sessionScope.username == 'sa'}">
+												<li class="nav-item"><a class="nav-link" href="#"
+													data-toggle="collapse" aria-expanded="false"
+													data-target="#submenu-1-4" aria-controls="submenu-1-4">User</a>
+													<div id="submenu-1-4" class="collapse submenu" style="">
+														<ul class="nav flex-column">
+															<li class="nav-item"><a class="nav-link"
+																href="user.htm">Các user</a></li>
+
+														</ul>
+													</div></li>
+											</c:when>
+										</c:choose>
 									</ul>
 								</div></li>
 
@@ -155,111 +179,80 @@ th {
 				</nav>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- end left sidebar -->
-		<!-- ============================================================== -->
-		<!-- ============================================================== -->
-		<!-- wrapper  -->
-		<!-- ============================================================== -->
-		<div class="dashboard-wrapper">
-			<div class="container-fluid  dashboard-content">
-				<!-- ============================================================== -->
-				<!-- pageheader -->
-				<!-- ============================================================== -->
-				<div class="row">
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<div class="page-header">
-							<h2 class="pageheader-title">Các thể loại</h2>
-							<p class="pageheader-text">Proin placerat ante duiullam
-								scelerisque a velit ac porta, fusce sit amet vestibulum mi.
-								Morbi lobortis pulvinar quam.</p>
-							
-						</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- end left sidebar -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- wrapper  -->
+	<!-- ============================================================== -->
+	<div class="dashboard-wrapper">
+		<div class="container-fluid  dashboard-content">
+			<!-- ============================================================== -->
+			<!-- pageheader -->
+			<!-- ============================================================== -->
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="page-header">
+						<h2 class="pageheader-title">Các thể loại</h2>
+						<p class="pageheader-text">Proin placerat ante duiullam
+							scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi
+							lobortis pulvinar quam.</p>
+
 					</div>
 				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- end pageheader -->
+			<!-- ============================================================== -->
+			<div class="row">
 				<!-- ============================================================== -->
-				<!-- end pageheader -->
+				<!-- basic table  -->
 				<!-- ============================================================== -->
-				<div class="row">
-					<!-- ============================================================== -->
-					<!-- basic table  -->
-					<!-- ============================================================== -->
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<div class="card">
-
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-striped table-bordered first">
-										<c:choose>
-												<c:when test="${users != null}">
-                                 <thead>
-													<tr>
-														<th style="width: 25% !important">Username</th>
-														<th style="width: 25% !important">Email</th>
-														<th style="width: 25% !important">Tên người dùng</th>
-														<th style="width: 25% !important">Role</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="u" items="${users}">
-														<tr>
-															<th style="width: 25% !important">${u.username}</th>
-															<th style="width: 25% !important">${u.email}</th>
-															<th style="width: 25% !important">${u.nickname}</th>
-															<th style="width: 25% !important">${u.role}</th>
-														</tr>
-													</c:forEach>
-												</tbody>
-											
-                                </c:when>
-                                		<c:otherwise>
-												<thead>
-													<tr>
-														<th style="width: 50% !important">ID thể loại</th>
-														<th style="width: 50% !important">Tên thể loại</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="u" items="${categories}">
-														<tr>
-															<td style="width: 50% !important">${u.idTheLoai}</td>
-															<td style="width: 50% !important">${u.tenTheLoai}</td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</c:otherwise>
-	</c:choose>
-									</table>
-
-
-	
-
-									<div class="card-body border-top">
-										<nav aria-label="Page navigation example">
-											
-										</nav>
-									</div>
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-hover table-striped table-bordered">
+									<thead>
+										<tr>
+											<th style="width: 50% !important">ID thể loại</th>
+											<th style="width: 50% !important">Tên thể loại</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="u" items="${categories}">
+											<tr>
+												<td style="width: 50% !important">${u.idTheLoai}</td>
+												<td style="width: 50% !important">${u.tenTheLoai}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<div class="card-body border-top">
+									<nav aria-label="Page navigation example"></nav>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- ============================================================== -->
-					<!-- end basic table  -->
-					<!-- ============================================================== -->
 				</div>
-
 				<!-- ============================================================== -->
-				<!-- end data table multiselects  -->
+				<!-- end basic table  -->
 				<!-- ============================================================== -->
 			</div>
-		</div>
-		<!-- ============================================================== -->
-		<!-- footer -->
-		<!-- ============================================================== -->
 
-		<!-- ============================================================== -->
-		<!-- end footer -->
-		<!-- ============================================================== -->
+			<!-- ============================================================== -->
+			<!-- end data table multiselects  -->
+			<!-- ============================================================== -->
+		</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- footer -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+	<!-- end footer -->
+	<!-- ============================================================== -->
 	</div>
 	</div>
 	<!-- ============================================================== -->

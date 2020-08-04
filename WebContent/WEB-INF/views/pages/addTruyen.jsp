@@ -64,13 +64,14 @@
 		<!-- ============================================================== -->
 		<!-- left sidebar -->
 		<!-- ============================================================== -->
+		
 		<div class="nav-left-sidebar sidebar-dark">
 			<div class="menu-list">
 				<nav class="navbar navbar-expand-lg navbar-light">
 					<a class="d-xl-none d-lg-none" href="#">Dashboard</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarNav" aria-controls="navbarNav"
-						aria-expanded="false" aria-label="Toggle navigation">
+						aria-expanded="true" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
@@ -81,7 +82,7 @@
 								data-target="#submenu-1" aria-controls="submenu-1"><i
 									class="fa fa-fw fa-user-circle"></i>Dashboard <span
 									class="badge badge-success">6</span></a>
-								<div id="submenu-1" class="collapse submenu" style="">
+								<div id="submenu-1" class="collapse submenu show">
 									<ul class="nav flex-column">
 										<li class="nav-item"><a class="nav-link" href="#"
 											data-toggle="collapse" aria-expanded="false"
@@ -90,8 +91,7 @@
 											<div id="submenu-1-2" class="collapse submenu" style="">
 												<ul class="nav flex-column">
 													<li class="nav-item"><a class="nav-link"
-														href="dashboard/theloai.htm">Thêm thể loại</a></li>
-											
+														href="dashboard/theloai.htm">Các thể loại</a></li>
 
 												</ul>
 											</div></li>
@@ -118,6 +118,20 @@
 														href="insertchapter/1.htm">Chỉnh sửa chapter</a></li>
 												</ul>
 											</div></li>
+										<c:choose>
+											<c:when test="${sessionScope.username == 'sa'}">
+												<li class="nav-item"><a class="nav-link" href="#"
+													data-toggle="collapse" aria-expanded="false"
+													data-target="#submenu-1-4" aria-controls="submenu-1-4">User</a>
+													<div id="submenu-1-4" class="collapse submenu" style="">
+														<ul class="nav flex-column">
+															<li class="nav-item"><a class="nav-link"
+																href="user.htm">Các user</a></li>
+
+														</ul>
+													</div></li>
+											</c:when>
+										</c:choose>
 									</ul>
 								</div></li>
 
@@ -126,6 +140,7 @@
 				</nav>
 			</div>
 		</div>
+	</div>
 		<!-- ============================================================== -->
 		<!-- end left sidebar -->
 		<!-- ============================================================== -->

@@ -125,11 +125,10 @@ margin-bottom: 20px;
 $(function(){
     $("#usernamee").blur(function(){
         var uname = $('#usernamee').val();
-
              $.ajax({
                 type: "GET",
                 data:{
-                	username:uname
+                	username:uname;
                 },
                 url: "/ebook/API/KiemTraDangNhap.htm",
                 success: function(value){
@@ -139,8 +138,6 @@ $(function(){
 					}
                 }
                 });
-    
-
     });
  });
 </script>

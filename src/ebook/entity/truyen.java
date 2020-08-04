@@ -41,6 +41,7 @@ public class truyen {
 	
 	@ManyToMany(mappedBy = "truyens", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Set<Accounts> accounts = new HashSet<>(0);
+	
 	public int getIdTruyen() {
 		return idTruyen;
 	}

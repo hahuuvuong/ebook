@@ -35,6 +35,8 @@
 
 	<bean id="viewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
+		<bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	<context:component-scan
 		base-package="ebook.controller"></context:component-scan>
 		<context:component-scan

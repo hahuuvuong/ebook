@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -16,12 +17,7 @@
 <link rel="apple-touch-icon" href="images/icon.png">
 
 <!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800"
-	rel="stylesheet">
+
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
 	rel="stylesheet">
@@ -39,6 +35,8 @@
 
 <!-- Modernizer js -->
 <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 	<!--[if lte IE 9]>
@@ -116,8 +114,6 @@
 															class="dropdown-item" href="account/logout.htm"><i
 															class="fas fa-power-off mr-2"></i>Logout</a>
 													</div>
-
-
 												</c:when>
 												<c:otherwise>
 													<strong class="label switcher-label"><a
@@ -165,7 +161,7 @@
 
 		<!-- End Bradcaump area -->
 		<!-- Start main Content -->
-		<div class="maincontent bg--white pt--80 pb--55">
+		<div class="maincontent brown--color pt--80 pb--55">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-9 col-12">
@@ -180,7 +176,6 @@
 
 										<!-- </div> -->
 									</div>
-
 								</div>
 								<div class="col-lg-6 col-12">
 									<div class="product__info__main">
@@ -190,10 +185,9 @@
 										</div>
 										<div class="product_meta">
 											<span class="posted_in">Thể loại: <a
-												href="theloai/${truyen.idTheLoai.idTheLoai}.htm">${truyen.idTheLoai.tenTheLoai }</a>
+												href="theloai/${truyen.idTheLoai.idTheLoai}/1.htm">${truyen.idTheLoai.tenTheLoai }</a>
 											</span>
 										</div>
-
 									</div>
 								</div>
 							</div>
@@ -203,8 +197,12 @@
 								role="tablist">
 								<a class="nav-item nav-link active" data-toggle="tab"
 									href="#nav-details" role="tab">Tóm tắt</a> <a
+									class="nav-item nav-link" data-toggle="tab"
+									href="#nav-listchapter" role="tab">Chapter</a> <a
 									class="nav-item nav-link" data-toggle="tab" href="#nav-review"
-									role="tab">Chapter</a>
+									role="tab">Đánh giá</a> <a class="nav-item nav-link"
+									data-toggle="tab" href="#nav-write-review" role="tab">Viết
+									đánh giá</a>
 							</div>
 							<div class="tab__container">
 								<!-- Start Single Tab Content -->
@@ -214,14 +212,127 @@
 								</div>
 								<!-- End Single Tab Content -->
 								<!-- Start Single Tab Content -->
-								<div class="pro__tab_label tab-pane fade" id="nav-review"
+								<div class="pro__tab_label tab-pane fade" id="nav-listchapter"
 									role="tabpanel">
-									<ul class="list-group">
-										<c:forEach var="u" items="${chapter}">
-											<li class="list-group-item"><a
-												href="chapter/${truyen.idTruyen}/${u.idChapter}.htm">${u.tenChapter}</a></li>
-										</c:forEach>
-									</ul>
+									<c:choose>
+										<c:when test="${listSize == 0}">
+											<div class="container">
+												<div class="row">
+													<div class="col text-center">
+														<p style="font-size: 20px">Các chương của sách hiện tại chưa được cập nhật!</p>
+													</div>
+												</div>
+											</div>
+										</c:when>
+										<c:otherwise>
+
+											<nav id="list-chapter">
+												<ul class="list-group">
+													<c:forEach var="u" items="${chapter}">
+														<li class="list-group-item"><a
+															href="chapter/${truyen.idTruyen}/${u.idChapter}.htm">${u.tenChapter}</a></li>
+													</c:forEach>
+												</ul>
+											</nav>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="pro__tab_label tab-pane fade " id="nav-review"
+									role="tabpanel">
+									<c:choose>
+										<c:when test="${listAssessSize == 0}">
+											<div class="container">
+												<div class="row">
+													<div class="col text-center">
+														<p style="font-size: 20px">Hiện chưa có đánh giá nào!</p>
+													</div>
+												</div>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<nav id="list-chapter">
+												<ul class="list-group">
+													<c:forEach var="u" items="${listAssess}">
+														<li class="list-group-item"><div class="container">
+																<div class="row" style="font-size: 20px">
+																	<i class="fa fa-star text-warning" aria-hidden="true"></i>4/5
+																	- <b>Title sẽ ở đây</b>
+																</div>
+																<div class="row">
+																	<p>12/12/2020 | tên người đánh giá sẽ ở đây</p>
+																</div>
+																<div class="row mt-2" style="font-size: 20px">
+																	<p>Nội dung của bài đánh giá lorem Nội dung của bài
+																		đánh giá lorem Nội dung của bài đánh giá lorem Nội
+																		dung của bài đánh giá lorem Nội dung của bài đánh giá
+																		lorem Nội dung của bài đánh giá lorem Nội dung của bài
+																		đánh giá lorem</p>
+																</div>
+															</div></li>
+													</c:forEach>
+												</ul>
+											</nav>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="pro__tab_label tab-pane fade " id="nav-write-review"
+									role="tabpanel">
+									<c:choose>
+										<c:when test="${sessionScope.nickname != NULL}">
+											<form:form action="rateform/${truyen.idTruyen}.htm"
+												modelAttribute="rateForm" method="post">
+												<div class="form-group">
+													<div class="row m-2">
+														<label for="exampleFormControlInput1">Đánh giá của
+															bạn về sách ?</label>
+													</div>
+													<div class="row">
+														<div class="rating">
+															<span><input type="radio" name="rating" id="str5"
+																value="5"><label for="str5"><i
+																	class="zmdi zmdi-star-outline"></i></label></span> <span><input
+																type="radio" name="rating" id="str4" value="4"><label
+																for="str4"><i class="zmdi zmdi-star-outline"></i></label></span>
+															<span><input type="radio" name="rating" id="str3"
+																value="3"><label for="str3"><i
+																	class="zmdi zmdi-star-outline"></i></label></span> <span><input
+																type="radio" name="rating" id="str2" value="2"><label
+																for="str2"><i class="zmdi zmdi-star-outline"></i></label></span>
+															<span><input type="radio" name="rating" id="str1"
+																value="1"><label for="str1"><i
+																	class="zmdi zmdi-star-outline"></i></label></span>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="titleAssessment">Tiêu đề của đánh giá </label>
+													<form:textarea class="form-control" path="titleAssessment"
+														rows="1"></form:textarea>
+												</div>
+												<div class="form-group">
+													<label for="exampleFormControlTextarea1">Viết nhận
+														xét của bạn</label>
+													<form:textarea class="form-control"
+														path="contentAssessment" rows="3"></form:textarea>
+												</div>
+												<div class="d-flex justify-content-center mb-3">
+													<button class="btn btn-warning" type="submit">Gửi
+														đánh giá</button>
+												</div>
+											</form:form>
+										</c:when>
+										<c:otherwise>
+											<div class="container">
+												<div class="row">
+													<div class="col text-center">
+														<Button class="btn btn-link">
+															<a href="account.htm">Vui lòng đăng nhập để đánh giá!</a>
+														</Button>
+													</div>
+												</div>
+											</div>
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<!-- End Single Tab Content -->
 							</div>
@@ -233,10 +344,7 @@
 							<div class="row mt--60">
 								<div
 									class="productcategory__slide--2 arrows_style owl-carousel owl-theme">
-
-
 									<!-- Start Single Product -->
-
 									<c:forEach var="u" items="${relatedBook}">
 
 										<div
@@ -265,20 +373,16 @@
 																class="quickview modal-view detail-link"
 																href="#productmodal${u.idTruyen}"><i
 																	class="zmdi zmdi-search"></i></a></li>
-																	<li><a  title="Xem sau"
-												class="quickview modal-view detail-link"
-												href="favbook/${x.idTruyen}.htm" target="_blank">	<i class="fas fa-heart"></i></a></li>
+															<li><a title="Xem sau"
+																class="quickview modal-view detail-link"
+																href="favbook/${x.idTruyen}.htm" target="_blank"> <i
+																	class="fas fa-heart"></i></a></li>
 														</ul>
 													</div>
 												</div>
-
 											</div>
 										</div>
-
-
 									</c:forEach>
-
-
 								</div>
 							</div>
 						</div>
@@ -330,26 +434,17 @@
 									<a href="index.html"> <img src="images/logo/3.png"
 										alt="logo">
 									</a>
-									<p>There are many variations of passages of Lorem Ipsum
-										available, but the majority have suffered duskam alteration
-										variations of passages</p>
+									<p>Liên hệ với chúng tôi</p>
 								</div>
 								<div class="footer__content">
 									<ul
 										class="social__net social__net--2 d-flex justify-content-center">
-										<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+										<li><a href="facebook.com/hahuuvuong"><i
+												class="fab fa-facebook-f"></i></a></li>
 										<li><a href="#"><i class="fab fa-google"></i></a></li>
 										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 										<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
 										<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-									</ul>
-									<ul class="mainmenu d-flex justify-content-center">
-										<li><a href="index.html">Trending</a></li>
-										<li><a href="index.html">Best Seller</a></li>
-										<li><a href="index.html">All Product</a></li>
-										<li><a href="index.html">Wishlist</a></li>
-										<li><a href="index.html">Blog</a></li>
-										<li><a href="index.html">Contact</a></li>
 									</ul>
 								</div>
 							</div>
@@ -364,16 +459,11 @@
 							<div class="copyright">
 								<div class="copy__right__inner text-left">
 									<p>
-										Copyright <i class="fa fa-copyright"></i> <a
-											href="https://freethemescloud.com/">Free themes Cloud.</a>
-										All Rights Reserved
+										<i class="fa fa-copyright"></i> <a
+											href="http://localhost:9999/ebook/home.htm">Ebook.com</a> Tổ
+										chức phi lợi nhuận
 									</p>
 								</div>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6 col-sm-12">
-							<div class="payment text-right">
-								<img src="images/icons/payment.png" alt="" />
 							</div>
 						</div>
 					</div>
@@ -421,13 +511,8 @@
 										<div class="addtocart-btn">
 											<a href="truyen/${z.idTruyen}.htm">Đọc ngay</a>
 										</div>
-
 									</div>
-
-
 								</div>
-
-
 							</div>
 						</div>
 					</div>
@@ -441,7 +526,21 @@
 	<!-- //Main wrapper -->
 
 
+	<script>
+		$(document).ready(function() {
+			// Check Radio-box
+			$(".rating input:radio").attr("checked", false);
 
+			$('.rating input').click(function() {
+				$(".rating span").removeClass('checked');
+				$(this).parent().addClass('checked');
+			});
+
+			$('input:radio').change(function() {
+				var userRating = this.value;
+			});
+		});
+	</script>
 	<!-- JS Files -->
 	<script src="js/vendor/jquery-3.2.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
